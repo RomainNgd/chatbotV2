@@ -1,0 +1,26 @@
+label{
+    font-size: 0.9em !important;
+    font-weight: 400 !important;
+    color: #1A2250 !important;
+    margin-right: 5px;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+}
+
+input{
+    padding: 5px;
+    border: 2px solid #DADDEC;
+    font-size: 1rem;
+    color: #656880;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+select {
+    padding: 5px;
+    width: 20%;
+    font-size: 14px;
+}

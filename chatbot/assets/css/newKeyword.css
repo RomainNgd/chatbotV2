@@ -1,0 +1,31 @@
+fieldset {
+    padding: 2em;
+    margin-bottom: 1em;
+}
+
+fieldset label{
+    font-size: 0.9em !important;
+    font-weight: 400 !important;
+    color: #1A2250 !important;
+    margin-right: 5px;
+}
+.keyword-legend{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1A2250;
+}
+
+fieldset input{
+    padding: 5px;
+    border: 2px solid #DADDEC;
+    font-size: 1rem;
+    color: #656880;
+}
+
+.keyword-div{
+    margin-top: 0.5em;
+}
+
+#btn-div {
+    display: flex;
+}
