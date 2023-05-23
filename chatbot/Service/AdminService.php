@@ -40,10 +40,17 @@ class AdminService
     public function validateResponse() : bool{
         $response = new Response();
         $response->setResponse($_POST['response']);
+        if ($this->responseRepository->checkResponseExistsForAdd($response)){
+            Toolbox::ajouterMessageAlerte(
+                "La réponse existe dèjà",
+                Toolbox::COULEUR_ROUGE
+            );
+            return false;
+        }
         try {
             $this->responseRepository->addResponse($response);
         } catch (\Exception $e){
-            return 'un problème est survenue';
+            return false;
         }
         $responseId = $this->responseRepository->getResponseId($response->getResponse());
         $response->setId($responseId['id']);
@@ -61,11 +68,12 @@ class AdminService
                         Toolbox::COULEUR_ROUGE
                     );
                     return false;
-                }
-                try {
-                    $this->keywordRepository->addKeyword($keyword);
-                } catch (\Exception $e){
-                    return false ;
+                } else {
+                    try {
+                        $this->keywordRepository->addKeyword($keyword);
+                    } catch (\Exception $e){
+                        return false ;
+                    }
                 }
             }
         }
@@ -76,6 +84,13 @@ class AdminService
         $response = new Response();
         $response->setResponse($_POST['response']);
         $response->setId($_POST['response-id']);
+        if ($this->responseRepository->checkResponseExistsForEdit($response)){
+            Toolbox::ajouterMessageAlerte(
+                "La répons existe dèjà",
+                Toolbox::COULEUR_ROUGE
+            );
+            return false;
+        }
         try {
             $this->responseRepository->updateResponse($response);
         } catch (\Exception $e){
@@ -121,7 +136,7 @@ class AdminService
             $keyword->setPriority($_POST['priority-'.$i]);
             if ($this->keywordRepository->checkKeywordExistsForAdd($keyword)){
                 Toolbox::ajouterMessageAlerte(
-                    "Un problème est survenue veuillez réessayer",
+                    "Un des mot clée existe deja ",
                     Toolbox::COULEUR_ROUGE
                 );
                 return false;

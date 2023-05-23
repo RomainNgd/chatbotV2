@@ -2,6 +2,7 @@
 
 namespace Chatbot\Repository;
 
+use Chatbot\Entity\Keyword;
 use Chatbot\Entity\Produit;
 use Chatbot\Entity\Response;
 use MainRepository;
@@ -21,12 +22,13 @@ class ResponseRepository extends MainRepository {
         return $get->fetch();
     }
 
-    public function addResponse(Response $response): void{
+    public function addResponse(Response $response){
         $query = 'INSERT INTO c_response (response) VALUES (:response)';
         $insert = $this->getDataBase()->prepare($query);
         $insert->execute([
             'response' => $response->getResponse(),
         ]) or die(print_r($this->getDataBase()->errorInfo()));
+        return $insert->fetch();
     }
 
     public function updateResponse(Response $response): void{
@@ -67,5 +69,29 @@ class ResponseRepository extends MainRepository {
         $delete = $this->getDataBase()->prepare($query);
         $delete->bindValue(':id', $id, PDO::PARAM_INT);
         $delete->execute();
+    }
+
+
+    public function checkResponseExistsForEdit(Response $response) {
+        $query = "SELECT COUNT(*) FROM c_response WHERE response = :response AND id != :id";
+        $stmt = $this->getDataBase()->prepare($query);
+        $stmt->bindValue(':keyword', $response->getResponse());
+        $stmt->bindValue(':id', $response->getId(), PDO::PARAM_INT);
+        $stmt->execute();
+
+        $count = $stmt->fetchColumn();
+
+        return $count > 0;
+    }
+
+    function checkResponseExistsForAdd(Response $response) {
+        $query = "SELECT COUNT(*) FROM c_response WHERE response = :response";
+        $stmt = $this->getDataBase()->prepare($query);
+        $stmt->bindValue(':response', $response->getResponse());
+        $stmt->execute();
+
+        $count = $stmt->fetchColumn();
+
+        return $count > 0;
     }
 }
