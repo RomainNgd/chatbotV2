@@ -346,6 +346,11 @@ try {
                                 }
                             }
                             break;
+                        case 'color':
+                            if (empty($url[2])){
+                                $adminController->color();
+                            }
+                            break;
                         default:
                             $mainController->pageErreur('Cette page n\'existe pas');
                             break;

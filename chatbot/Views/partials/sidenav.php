@@ -47,6 +47,15 @@ $page = $page_menu;
                     <span class="link hide">Categorie</span>
                 </a>
             </li>
+            <li class="tooltip-element <?php if($page === 'color'): ?> active-tab <?php endif ?>" data-tooltip="4">
+                <a href="<?= URL; ?>admin/color" data-active="4">
+                    <div class="icon">
+                        <i class="bx bx-bar-chart-square"></i>
+                        <i class="bx bxs-bar-chart-square"></i>
+                    </div>
+                    <span class="link hide">Palette</span>
+                </a>
+            </li>
             <div class="tooltip" style="top: 62.5%;">
                 <span class="">Dashboard</span>
                 <span class="">Projects</span>
