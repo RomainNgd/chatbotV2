@@ -84,7 +84,7 @@ class AdminService
                 Toolbox::COULEUR_ROUGE
             );
         }
-        for ($i =1; $i < $_POST['k-length']+1; $i++){
+        for ($i =1; $i <= $_POST['k-length']; $i++){
             $keyword = new Keyword();
             $keyword->setResponse($response);
             $keyword->setId($_POST['k-id-'.$i]);
@@ -114,12 +114,12 @@ class AdminService
                 return false;
             }
         }
-        for ($i = $_POST['k-length']+1; $i < $_POST['k-length-new']+1; $i++){
+        for ($i = $_POST['k-length']+1; $i <= $_POST['k-length-new']; $i++){
             $keyword = new Keyword();
             $keyword->setResponse($response);
             $keyword->setKeyword($_POST['keyword-' . $i]);
             $keyword->setPriority($_POST['priority-'.$i]);
-            if ($this->keywordRepository->checkKeywordExistsForEdit($keyword)){
+            if ($this->keywordRepository->checkKeywordExistsForAdd($keyword)){
                 Toolbox::ajouterMessageAlerte(
                     "Un problème est survenue veuillez réessayer",
                     Toolbox::COULEUR_ROUGE
