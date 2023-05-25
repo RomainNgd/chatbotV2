@@ -1,54 +1,28 @@
-<h3>Sélection d'une palette de couleur:</h3>
-<div class="d-flex">
-    <?php var_dump($list);?>
-    <form action="#" method="POST" id="form-palette">
-        <div id="select-palette">
-            <label for="palette-1" class="palette">
-                <div>
-                    <input type="radio" value="1" id="palette-1" name="palette"> Palette 1
-                </div>
-                <div class="block-palette">
-                    <div class="dark-maincolor palette-color"></div>
-                    <div class="main-color palette-color"></div>
-                    <div class="light-color palette-color"></div>
-                    <div class="gray-color palette-color"></div>
-                </div>
-            </label>
-            <label for="palette-2" class="palette">
-                <div>
-                    <input type="radio" value="2" id="palette-2" name="palette"> Palette 2
-                </div>
-                <div class="block-palette">
-                    <div class="dark-maincolor palette-color"></div>
-                    <div class="main-color palette-color"></div>
-                    <div class="light-color palette-color"></div>
-                    <div class="gray-color palette-color"></div>
-                </div>
-            </label>
-            <label for="palette-3" class="palette">
-                <div>
-                    <input type="radio" value="3" id="palette-3" name="palette"> Palette 3
-                </div>
-                <div class="block-palette">
-                    <div class="dark-maincolor palette-color"></div>
-                    <div class="main-color palette-color"></div>
-                    <div class="light-color palette-color"></div>
-                    <div class="gray-color palette-color"></div>
-                </div>
-            </label>
-            <label for="palette-4" class="palette">
-                <div>
-                    <input type="radio" value="4" id="palette-4" name="palette"> Palette 4
-                </div>
-                <div class="block-palette">
-                    <div class="dark-maincolor palette-color"></div>
-                    <div class="main-color palette-color"></div>
-                    <div class="light-color palette-color"></div>
-                    <div class="gray-color palette-color"></div>
-                </div>
-            </label>
-        </div>
+<section id="colors">
+    <h3>Sélection d'une palette de couleur:</h3>
+    <div class="d-flex">
+        <form action="<?= URL ?>admin/color/usePalette" method="POST" id="form-palette">
+            <div id="select-palette">
+                <?php foreach($list as $key => $color): ?>
+                    <label for="palette-<?= $key ?>" class="palette">
+                        <div>
+                            <input type="radio" value="<?= $color['id'] ?>" id="palette-<?= $key ?>" name="id" <?php if($color['active'] == true){ ?> checked <?php } ?>> <?= $color['libelle'] ?>
+                        </div>
+                        <div class="block-palette">
+                            <div class="dark-maincolor palette-color" style="background-color: <?= $color['dark_color'] ?>;"></div>
+                            <div class="main-color palette-color" style="background-color: <?= $color['main_color'] ?>;"></div>
+                            <div class="light-color palette-color" style="background-color: <?= $color['light_color'] ?>;"></div>
+                            <div class="gray-color palette-color" style="background-color: <?= $color['gray_color'] ?>;"></div>
+                        </div>
+                    </label>
+                <?php endforeach; ?>
+            </div>
 
-        <button class="btn btn-validation">Modifier</button>
-    </form>
-</div>
+            <button class="btn btn-validation" type="submit">Modifier</button>
+        </form>
+
+        <div>
+            
+        </div>
+    </div>
+</section>

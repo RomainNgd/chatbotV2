@@ -6,14 +6,29 @@ class Color
 {
     private int $id;
 
-    private array $palette;
-
     public function __construct(){
         
     }
 
-    public function getPalette(): array
-    {
-        return $this->palette;
+    // public function setPalette(int $palette): void{
+    //     $this->palette = $palette;
+    // }
+
+    // public function getPalette(): array
+    // {
+    //     return $this->palette;
+    // }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+
+    public function setId(int $id): void{
+        $this->id = $id;
+    }
+
+    public function getId(): int{
+        return $this->id;
     }
 }

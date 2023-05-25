@@ -8,7 +8,7 @@
         <title>Agency - Start Bootstrap Theme</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link rel="stylesheet" href="chatbot/assets/css/style.css">
+        <link rel="stylesheet" href="chatbot/assets/css/style.css?<?= fileatime('chatbot/assets/css/style.css') ?>">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
