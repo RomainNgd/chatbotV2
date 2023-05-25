@@ -50,6 +50,13 @@ class KeywordRepository extends MainRepository
         return $get->fetch();
     }
 
+    public function getAllKeyword(){
+        $query = 'SELECT * FROM c_keyword';
+        $get = $this->getDataBase()->prepare($query);
+        $get->execute() or die(print_r($this->getDataBase()->errorInfo()));
+        return $get->fetchAll();
+    }
+
     public function getKeywordAsResponse(int $id) : array{
         $query = 'SELECT * FROM c_keyword WHERE response_id = :id';
         $get = $this->getDataBase()->prepare($query);

@@ -28,7 +28,6 @@ class ResponseRepository extends MainRepository {
         $insert->execute([
             'response' => $response->getResponse(),
         ]) or die(print_r($this->getDataBase()->errorInfo()));
-        return $insert->fetch();
     }
 
     public function updateResponse(Response $response): void{
@@ -39,12 +38,21 @@ class ResponseRepository extends MainRepository {
         $update->execute() or die(print_r($this->getDataBase()->errorInfo()));
     }
 
-    public function getResponse(string $keyword){
-        $query = 'SELECT response, priority, keyword FROM c_keyword INNER JOIN c_response ON c_keyword.response_id = c_response.id WHERE keyword = :keyword';
+    public function getResponse(int $id){
+        $query = 'SELECT response FROM c_response WHERE id = :id';
         $get = $this->getDataBase()->prepare($query);
         $get->execute([
-            'keyword' => $keyword,
-        ]) or die(print_r($this->db->errorInfo()));
+            'id' => $id,
+        ]) or die(print_r($this->getDataBase()->errorInfo()));
+        return $get->fetch();
+    }
+
+    public function getSlug(int $id){
+        $query = 'SELECT slug FROM c_response WHERE id = :id';
+        $get = $this->getDataBase()->prepare($query);
+        $get->execute([
+            'id' => $id,
+        ]) or die(print_r($this->getDataBase()->errorInfo()));
         return $get->fetch();
     }
 
@@ -75,7 +83,7 @@ class ResponseRepository extends MainRepository {
     public function checkResponseExistsForEdit(Response $response) {
         $query = "SELECT COUNT(*) FROM c_response WHERE response = :response AND id != :id";
         $stmt = $this->getDataBase()->prepare($query);
-        $stmt->bindValue(':keyword', $response->getResponse());
+        $stmt->bindValue(':response', $response->getResponse());
         $stmt->bindValue(':id', $response->getId(), PDO::PARAM_INT);
         $stmt->execute();
 

@@ -98,6 +98,7 @@ class AdminService
                 "Un problème est survenue veuillez réessayer",
                 Toolbox::COULEUR_ROUGE
             );
+            return false;
         }
         for ($i =1; $i <= $_POST['k-length']; $i++){
             $keyword = new Keyword();

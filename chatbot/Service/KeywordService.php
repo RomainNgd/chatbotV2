@@ -29,18 +29,34 @@ class KeywordService extends helperService
      */
     public function searchKeyword($sentence): array|string
     {
-        $words = explode(' ', $sentence);
         $priority = 0;
-        $response = '';
-        foreach ($words as $item){
-            $item = strtolower(htmlentities($item));
-            $result = $this->responseRepository->getResponse($item);
-            if ($result !== false && $result['priority'] > $priority){
-                $response = $result['response'];
-                $priority = $result['priority'];
-                $_SESSION['lastkeyword'] = $result['keyword'];
+        $keywords = $this->keywordRepository->getAllKeyword();
+        foreach ($keywords as $keyword) {
+            if (str_contains($sentence, $keyword['keyword']) !== false) {
+                if ($keyword['priority'] > $priority){
+                    $ressemblance = $keyword;
+                }
+                continue;
+            }
+
+            similar_text($sentence, $keyword['keyword'], $similarity);
+            $seuilSimilarite = 70;
+            if ($similarity >= $seuilSimilarite) {
+                if ($keyword['priority'] > $priority){
+                    $ressemblance = $keyword;
+                }
             }
         }
-        return  $response;
+        if (!empty($ressemblance)){
+            $response = $this->responseRepository->getResponse($ressemblance['response_id']);
+            $slug = $this->responseRepository->getSlug($ressemblance['response_id']);
+            if (!empty($slug)){
+                $_SESSION['lastkeyword'] = $slug['slug'];
+            }
+        } else{
+            $response = '';
+        }
+
+        return  $response['response'];
     }
 }
