@@ -2,6 +2,8 @@
 
 namespace Validator;
 
+require_once (__DIR__ . '/../Controllers/Toolbox.php');
+
 use Chatbot\Controllers\Toolbox;
 class PasswordValidator
 {

@@ -39,8 +39,8 @@ class UserRepository extends MainRepository {
         return empty($utilisateur);
     }
 
-    public function bdCreerCompte($login, $passwordCrypte, $mail, $role): bool{
-        $req = "INSERT INTO c_user (login, password, role) VALUES (:login, :password, 'admin')";
+    public function bdCreerCompte($login, $passwordCrypte, $role = 'CUSTOMER'): bool{
+        $req = "INSERT INTO c_user (login, password, role) VALUES (:login, :password, :role)";
         $stmt = $this->getDataBase()->prepare($req);
         $stmt->bindValue(":login", $login, PDO::PARAM_STR);
         $stmt->bindValue(':password', $passwordCrypte, PDO::PARAM_STR);
