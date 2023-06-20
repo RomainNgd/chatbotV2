@@ -363,6 +363,10 @@ try {
                                             );
                                         } else{
                                             $colorService->usePalette();
+                                            Toolbox::ajouterMessageAlerte(
+                                                "Votre palette a bien été modifiée",
+                                                Toolbox::COULEUR_VERTE
+                                            );
                                         }
                                         header("Location:" . URL . "admin/color");    
                                         break;
