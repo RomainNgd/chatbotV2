@@ -105,3 +105,14 @@ button {
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
+
+.instruction{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.instruction-item{
+    width: 18em;
+    margin-bottom: 2em;
+}

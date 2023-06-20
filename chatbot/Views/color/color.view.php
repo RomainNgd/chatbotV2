@@ -17,12 +17,7 @@
                     </label>
                 <?php endforeach; ?>
             </div>
-
             <button class="btn btn-validation" type="submit">Modifier</button>
         </form>
-
-        <div>
-            
-        </div>
     </div>
 </section>

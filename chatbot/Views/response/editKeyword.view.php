@@ -2,9 +2,9 @@
     <div class="container-text">
         <form action="<?= URL ?>admin/keyword/validateEdit" method="post">
             <label for="response">Votre réponse à modifier </label>
-            <textarea  id="response" name="response" required placeholder="La reponse donné par le chatbot" ><?= $response[0]['response'] ?></textarea>
+            <textarea  id="response" name="response" required placeholder="La réponse donnée par le chatbot" ><?= $response[0]['response'] ?></textarea>
             <input type="hidden" id="response-id" name="response-id" readonly value="<?= $response[0]['id'] ?>">
-            <label class="keyword-legend">Le ou les mot clée à associé</label>
+            <label class="keyword-legend">Le/Les mot(s)-clé(s) à associer</label>
             <fieldset>
                 <?php $i = 0;
                 foreach ($keywords as $keyword): $i++; ?>

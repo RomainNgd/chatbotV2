@@ -3,10 +3,10 @@
         <form action="<?= URL ?>admin/keyword/new" method="post">
             <label for="response">Votre réponse à enregistrer </label>
             <textarea  id="response" name="response" required placeholder="La reponse donné par le chatbot" ></textarea>
-            <label class="keyword-legend">Le ou les mot clée à associé</label>
+            <label class="keyword-legend">Le/Les mot(s)-clé(s) à associer</label>
             <fieldset>
                 <div>
-                    <label class="keyword-label" for="keyword-1">Mot clée 1 :</label>
+                    <label class="keyword-label" for="keyword-1">Mot-clé 1 :</label>
                     <input type="text" id="keyword-1" required name="keyword-1" placeholder="mot-clée">
                     <label class="keyword-label" for="priority-1">Priorité :</label>
                     <input type="number" id="priority-1" required name="priority-1" placeholder="2">
@@ -21,12 +21,12 @@
     </div>
 </div>
 <div class="table-container">
-    <h2 style="text-align: center">Liste des réponses et mots clées</h2>
+    <h2 style="text-align: center">Liste des réponses et mots-clés</h2>
     <table class="fl-table">
         <thead>
         <tr>
             <th>Réponse</th>
-            <th>Mot clées</th>
+            <th>Mots-clés</th>
             <th>Modifier</th>
             <th>Supprimer</th>
         </tr>
@@ -63,8 +63,8 @@
         <h2>Suppression de Reponse</h2>
         <a class="close" href="#">&times;</a>
         <div class="content">
-            Etes-vous sur de vouloir supprimer la Reponse <br>
-            En supprimant la réponse vous supprimerai aussi les mot clée associé
+            Êtes-vous sûr de vouloir supprimer la réponse <br>
+            En supprimant la réponse vous supprimerez aussi les mots-clés associés
             <button style="background-color: darkred; background-image: none; margin-top: 2em" ><a id="deleteUrl" style="color: white" href="<?= URL ?>admin/keyword/delete&id=">supprimer</a></button>
         </div>
     </div>
