@@ -9,6 +9,9 @@
             <label for="slug">Slug de la catégorie :
                 <input type="text" id="slug" name="slug">
             </label>
+            <label for="url">Url de la catégorie :
+                <input type="text" id="url" name="url">
+            </label>
             <button type="submit">Ajouter</button>
         </form>
     </div>

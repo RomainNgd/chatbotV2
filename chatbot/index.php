@@ -196,7 +196,7 @@ try {
                                         if (!empty($_POST['name']) && !empty($_POST['ref']) && !empty($_POST['slug']) && !empty($_POST['price']) && !empty($_POST['category'])){
                                             if ($adminService->validateProduct()){
                                                 Toolbox::ajouterMessageAlerte(
-                                                    "Le réponse et ses mots clée ont bien été modifié",
+                                                    "Le produit a bien été ajouté",
                                                     Toolbox::COULEUR_VERTE);
                                             } else {
                                                 Toolbox::ajouterMessageAlerte(
@@ -280,7 +280,7 @@ try {
                                         if (!empty($_POST['categorie']) && !empty($_POST['slug'])){
                                             if ($adminService->validateCategory()){
                                                 Toolbox::ajouterMessageAlerte(
-                                                    "La categorie a bine été ajouté",
+                                                    "La categorie a bien été ajouté",
                                                     Toolbox::COULEUR_VERTE);
                                             } else {
                                                 Toolbox::ajouterMessageAlerte(

@@ -10,7 +10,10 @@
                 <input type="text" name="ref" id="ref">
             </label>
             <label for="slug">Slug de la fiche produit :
-                <input type="slug" name="slug" id="slug">
+                <input type="text" name="slug" id="slug">
+            </label>
+            <label for="url">URL de la fiche produit :
+                <input type="text" name="url" id="url">
             </label>
             <label for="price">Prix :
                 <input type="number" name="price" step="0.01" id="price">

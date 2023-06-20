@@ -198,10 +198,11 @@ class AdminService
         return true;
     }
 
-    public function validateCategory() :bool{
+    public function validateCategory(): bool{
         $category = new Categorie();
         $category->setSlug($_POST['slug']);
         $category->setCategorie($_POST['categorie']);
+        $category->setUrl($_POST['url']);
 
         try {
             $this->categorieRepository->addCategorie($category);
