@@ -225,7 +225,7 @@ class ChatService
                     $response = 'Voici le contenue de votre panier(pour suppirmer un produit du panier taper \'supprimer du panier\')';
                     foreach ($_SESSION['panier'] as $id){
                         $produit = $this->produitRepository->getProductById($id);
-                        $response = $response . '<br>' . $produit['produit'] . 'référence produit : ' . $produit['ref'] ;
+                        $response = $response . '<br>' . $produit['produit'] . ' (ref produit : ' . $produit['ref'] .' )' ;
                     }
                 } else {
                     $response = 'Votre panier est vide';

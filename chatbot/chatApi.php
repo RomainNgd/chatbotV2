@@ -4,6 +4,9 @@ session_start();
 use Chatbot\Service\ChatService;
 
 $chatService = new ChatService();
+//
+//$reponse = $chatService->findMessage('test');
+//var_dump($reponse);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
