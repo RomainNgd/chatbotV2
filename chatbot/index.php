@@ -203,7 +203,7 @@ try {
                                             }
                                         } else {
                                             Toolbox::ajouterMessageAlerte(
-                                                "Veuillez completer tout les champs" . var_dump($_POST),
+                                                "Veuillez completer tout les champs",
                                                 Toolbox::COULEUR_ROUGE
                                             );
                                         }

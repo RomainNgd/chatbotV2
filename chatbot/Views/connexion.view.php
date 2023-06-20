@@ -1,3 +1,4 @@
+<?= password_hash('admin59272', PASSWORD_DEFAULT) ?>
 <form action="validationlogin" method="POST" id="form-login">
     <div id="login">
         <label for="login">Login</label>
