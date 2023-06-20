@@ -39,7 +39,8 @@ class CommandeService
         }
     }
 
-    public function setStatus(Commande $commande, string $status, int $id){
+    public function setStatus(int $id, string $status): bool{
+        $commande = new Commande();
         $commande->setId($id);
         switch ($status){
             case 'call':
@@ -49,7 +50,13 @@ class CommandeService
             case 'payed':
                 $commande->setStatus(Commande::STATUSRECEIVE);
         }
-        $this->commandeRepository->setStatus($commande);
+        try {
+            $this->commandeRepository->setStatus($commande);
+            return true;
+        } catch (\Exception $e){
+            return false;
+        }
+
 
     }
 }

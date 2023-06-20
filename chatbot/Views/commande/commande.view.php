@@ -18,7 +18,17 @@
                 <td><?= $element['email']?></td>
                 <td><?= $element['create_at']?></td>
                 <td><?= $element['product'] ?></td>
-                <td><?= $element['status']?></td>
+                <td><?= $element['status']?> <i class="fa-solid fa-pen edit-status"></i>
+                    <form id="edit-status" method="post" class="hidden">
+                        <input type="hidden" id="id" name="id" value="<?= $element['id'] ?>">
+                        <label for="status" class="hidden">Choix du status</label><select name="status" id="status">
+                            <option value="call">enregistré</option>
+                            <option value="payed">payé</option>
+                            <option value="sent">envoyé</option>
+                        </select>
+                        <button type="submit">Validé</button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach;
         } else { ?>

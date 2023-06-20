@@ -1,0 +1,23 @@
+.hidden{
+    display: none;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+label{
+    margin-bottom: 3px;
+}
+
+form button {
+    margin-top: 5px;
+    font-size: small;
+    padding: 2px;
+    width: 80%;
+}
+.edit-status{
+    cursor: pointer;
+}

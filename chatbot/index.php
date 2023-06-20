@@ -8,6 +8,7 @@ use Chatbot\Controllers\Toolbox;
 use Chatbot\Service\AdminService;
 use Chatbot\Service\StarterService;
 use Chatbot\Service\ColorService;
+use Chatbot\Service\CommandeService;
 use Validator\PasswordValidator;
 
 session_start();
@@ -20,6 +21,7 @@ require_once 'Controllers/MainController.php';
 require_once 'Service/AdminService.php';
 require_once 'Service/StarterService.php';
 require_once 'Service/ColorService.php';
+require_once 'Service/CommandeService.php';
 require_once 'Controllers/Security.php';
 require_once 'Controllers/Toolbox.php';
 require_once 'Validator/PasswordValidator.php';
@@ -29,6 +31,7 @@ $mainController = new MainController();
 $adminService = new AdminService();
 $starterService = new StarterService();
 $colorService = new ColorService();
+$commandeService = new CommandeService();
 
 
 try {
@@ -370,23 +373,21 @@ try {
                             }
                             break;
                         case 'commande':
-                            if (empty($url[2])){
+                            if (empty($_POST['id']) && empty($_POST['status'])){
                                 $adminController->commande();
-                            }
-                            else{
-                                switch ($url[2]){
-                                    case 'usePalette':
-                                        if (!isset($_POST['id']) && is_int($_POST['id'])){
-                                            Toolbox::ajouterMessageAlerte(
-                                                "Veuillez choisir une palette valide",
-                                                Toolbox::COULEUR_ROUGE
-                                            );
-                                        } else{
-                                            $colorService->usePalette();
-                                        }
-                                        header("Location:" . URL . "admin/color");
-                                        break;
+                            } else{
+                                if ($commandeService->setStatus($_POST['id'], $_POST['status'])){
+                                    Toolbox::ajouterMessageAlerte(
+                                        "le status a bien été modifié",
+                                        Toolbox::COULEUR_VERTE
+                                    );
+                                } else {
+                                    Toolbox::ajouterMessageAlerte(
+                                        "Un problème est survenue",
+                                        Toolbox::COULEUR_ROUGE
+                                    );
                                 }
+                                $adminController->commande();
                             }
                         default:
                             $mainController->pageErreur('Cette page n\'existe pas');

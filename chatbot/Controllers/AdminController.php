@@ -153,8 +153,8 @@ class AdminController extends MainController
             'page_title' => 'page de commande',
             'views' => 'Views/commande/commande.view.php',
             'template' => 'Views/partials/template.php',
-            'page_javascript' => ['popup.js'],
-            'page_css' => ['admin.css', 'table.css', 'popup.css'],
+            'page_javascript' => ['popup.js', 'commande.js'],
+            'page_css' => ['admin.css', 'table.css', 'popup.css', 'commande.css'],
             'list' => $commande,
             'page_menu' => 'color'
         ];

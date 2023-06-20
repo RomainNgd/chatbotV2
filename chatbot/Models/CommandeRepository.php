@@ -40,7 +40,7 @@ class CommandeRepository extends MainRepository
     }
 
     public function setStatus(Commande $commande){
-        $query = 'UPDATE c_categorie SET status = :status WHERE id = :id';
+        $query = 'UPDATE c_commande SET status = :status WHERE id = :id';
         $insert = $this->getDataBase()->prepare($query);
         $insert->bindValue(':status', $commande->getStatus());
         $insert->bindValue(':id', $commande->getId());
