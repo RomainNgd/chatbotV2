@@ -165,7 +165,7 @@ class AdminService
 
         try {
             $this->produitRepository->addProduit($product);
-        } catch (Exception $e){
+        } catch (\Exception $e){
             return false;
         }
 

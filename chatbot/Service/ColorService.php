@@ -7,7 +7,6 @@ require_once __DIR__ . '/../Entity/Color.php';
 
 use Chatbot\Repository\ColorRepository;
 use Chatbot\Database\dbConnection;
-use Chatbot\Entity\Color;
 
 class ColorService
 {
@@ -26,6 +25,5 @@ class ColorService
     {
         $id = intval($_POST['id']);
         $this->repository->editPalette($id);
-        $this->repository->updateActivePalette($id);
     }
 }

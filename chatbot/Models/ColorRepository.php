@@ -20,7 +20,7 @@ class ColorRepository extends MainRepository
         return $get->fetchAll();
     }
 
-    public function getPaletteById($id){
+    public function getPaletteById(int $id){
         $query = 'SELECT * FROM c_palette WHERE id = :id';
         $get = $this->getDataBase()->prepare($query);
         $get->bindParam(':id', $id, PDO::PARAM_INT);
@@ -29,8 +29,9 @@ class ColorRepository extends MainRepository
         return $get->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function editPalette($id){
+    public function editPalette(int $id){
         $palette = $this->getPaletteById($id);
+        $this->updateActivePalette($id);
         $file = dirname( __DIR__, 2) . '\chatbot\assets\css\palette.css';
 
         $data = trim("
@@ -47,7 +48,7 @@ class ColorRepository extends MainRepository
         file_put_contents($file, $data); 
     }
 
-    public function updateActivePalette($id){
+    public function updateActivePalette(int $id){
         $query = "
             UPDATE c_palette SET active = 0 WHERE id != :id;
             UPDATE c_palette SET active = 1 WHERE id = :id;
