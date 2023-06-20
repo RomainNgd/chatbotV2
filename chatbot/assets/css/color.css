@@ -1,0 +1,40 @@
+#colors{
+    background-color: #ffffff;
+    padding: 2em;
+}
+
+.palette-color{
+    height: 30px;
+    width: 30px;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.block-palette{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+    align-items: center;
+    border: 3px solid rgb(41, 41, 41);
+}
+
+.palette{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+    justify-content: space-between;
+}
+
+#form-palette{
+    margin: 1em 0 0 2em;
+}
+
+.btn-validation{
+    background-color: rgb(23, 216, 23);
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 2em;
+}

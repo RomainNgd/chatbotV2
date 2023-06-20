@@ -1,11 +1,4 @@
-/* style général / variables **/
-
-:root{
-    --light-color: #f0f2f5;
-    --main-color: #857dff;
-    --main-dark-color: #7B39EB;
-    --gray-color: #e4e6eb;
-}
+@import 'palette.css';
 
 ::-webkit-scrollbar-track{
     width: 10px;
