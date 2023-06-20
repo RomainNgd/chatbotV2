@@ -13,47 +13,38 @@ $page = $page_menu;
         <ul>
             <li class="tooltip-element <?php if($page === 'accueil'): ?>active-tab <?php endif ?>" data-tooltip="0">
                 <a href="<?= URL; ?>admin/accueil"  data-active="0">
-                    <div class="icon">
-                        <i class="bx bx-tachometer"></i>
-                        <i class="bx bxs-tachometer"></i>
-                    </div>
+                    <i class="fa-solid fa-house icon"></i>
                     <span class="link hide">Accueil</span>
                 </a>
             </li>
             <li class="tooltip-element <?php if($page === 'keyword'): ?>active-tab <?php endif ?>" data-tooltip="1">
                 <a href="<?= URL; ?>admin/keyword" data-active="1">
-                    <div class="icon">
-                        <i class="bx bx-folder"></i>
-                        <i class="bx bxs-folder"></i>
-                    </div>
-                    <span class="link hide">Mot clée</span>
+                    <i class="fa-solid fa-keyboard icon"></i>
+                    <span class="link hide">Mots-clés</span>
                 </a>
             </li>
             <li class="tooltip-element <?php if($page === 'produit'): ?>active-tab <?php endif ?>" data-tooltip="2">
                 <a href="<?= URL; ?>admin/produit" data-active="2">
-                    <div class="icon">
-                        <i class="bx bx-message-square-detail"></i>
-                        <i class="bx bxs-message-square-detail"></i>
-                    </div>
+                    <i class="fa-brands fa-product-hunt icon"></i>
                     <span class="link hide">Produit</span>
                 </a>
             </li>
             <li class="tooltip-element <?php if($page === 'categorie'): ?> active-tab <?php endif ?>" data-tooltip="3">
                 <a href="<?= URL; ?>admin/categorie" data-active="3">
-                    <div class="icon">
-                        <i class="bx bx-bar-chart-square"></i>
-                        <i class="bx bxs-bar-chart-square"></i>
-                    </div>
-                    <span class="link hide">Categorie</span>
+                    <i class="fa-solid fa-list icon"></i>
+                    <span class="link hide">Catégorie</span>
                 </a>
             </li>
             <li class="tooltip-element <?php if($page === 'color'): ?> active-tab <?php endif ?>" data-tooltip="4">
                 <a href="<?= URL; ?>admin/color" data-active="4">
-                    <div class="icon">
-                        <i class="bx bx-bar-chart-square"></i>
-                        <i class="bx bxs-bar-chart-square"></i>
-                    </div>
+                    <i class="fa-solid fa-palette icon"></i>
                     <span class="link hide">Palette</span>
+                </a>
+            </li>
+            <li class="tooltip-element <?php if($page === 'commande'): ?> active-tab <?php endif ?>" data-tooltip="4">
+                <a href="<?= URL; ?>admin/commande" data-active="4">
+                    <i class="fa-sharp fa-solid fa-cart-shopping icon"></i>
+                    <span class="link hide">Commande</span>
                 </a>
             </li>
             <div class="tooltip" style="top: 62.5%;">
@@ -69,10 +60,7 @@ $page = $page_menu;
         <ul>
             <li class="tooltip-element" data-tooltip="2">
                 <a href="<?= URL; ?>deconnexion" data-active="6">
-                    <div class="icon">
-                        <i class="bx bx-cog"></i>
-                        <i class="bx bxs-cog"></i>
-                    </div>
+                    <i class="fa-solid fa-right-from-bracket icon"></i>
                     <span class="link hide">Deconnexion</span>
                 </a>
             </li>

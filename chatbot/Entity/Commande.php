@@ -4,13 +4,19 @@ namespace Chatbot\Entity;
 
 class Commande
 {
+    public const STATUSCALL = 'enregistrer';
+    public const STATUSSENT = 'envoyé';
+    public const STATUSRECEIVE = 'payed';
+
     private int $id;
 
     private string $email;
 
     private \DateTime $createAt;
 
-    private array $product;
+    private string $product;
+
+    private string $status = Commande::STATUSCALL;
 
     /**
      * @return int
@@ -61,19 +67,35 @@ class Commande
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getProduct(): array
+    public function getProduct(): string
     {
         return $this->product;
     }
 
     /**
-     * @param array $product
+     * @param string $product
      */
-    public function setProduct(array $product): void
+    public function setProduct(string $product): void
     {
         $this->product = $product;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
     }
 
 }

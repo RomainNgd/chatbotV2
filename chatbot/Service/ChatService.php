@@ -275,12 +275,16 @@ class ChatService
                 }
                 break;
             }
-            case 'commande_confirm' : {
+            case 'commande_confirme' : {
                 $_SESSION['email'] = $sentences;
-                if (!$this->commandeService->addCommande()){
+                if (!$_SESSION['panier']){
+                    $response = 'Vous ne pouvez pas commander votre panier est vide';
+                }
+                elseif (!$this->commandeService->addCommande()){
                     $response = 'Un problème est survenue dans l\'enregistrement de votre commande veuillez réessayer';
                 } else{
                     $response = 'Votre commande a été enregistrer si nous ne recevons pas le chèque dans un delaie de 30 jours elle sera abandonné, Merci de votre commande a bientôt';
+                    unset($_SESSION['panier']);
                 }
                 break;
             }

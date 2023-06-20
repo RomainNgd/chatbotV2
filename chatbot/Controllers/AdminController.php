@@ -7,6 +7,7 @@ use Chatbot\Repository\ProduitRepository;
 use Chatbot\Repository\ResponseRepository;
 use chatbot\Repository\UserRepository;
 use Chatbot\Repository\ColorRepository;
+use Chatbot\Repository\CommandeRepository;
 use Chatbot\Service\AdminService;
 
 require_once("MainController.php");
@@ -16,6 +17,7 @@ require_once (__DIR__ . '/../Models/KeywordRepository.php');
 require_once (__DIR__ . '/../Models/ProduitRepository.php');
 require_once (__DIR__ . '/../Models/CategorieRepository.php');
 require_once (__DIR__ . '/../Models/ColorRepository.php');
+require_once (__DIR__ . '/../Models/CommandeRepository.php');
 require_once (__DIR__ . '/../Service/AdminService.php');
 
 
@@ -27,6 +29,7 @@ class AdminController extends MainController
     private ProduitRepository $produitRepository;
     private CategorieRepository $categorieRepository;
     private ColorRepository $colorRepository;
+    private CommandeRepository $commandeRepository;
 
     public function __construct()
     {
@@ -36,6 +39,7 @@ class AdminController extends MainController
        $this->produitRepository = new ProduitRepository();
        $this->categorieRepository = new CategorieRepository();
        $this->colorRepository = new ColorRepository();
+       $this->commandeRepository = new CommandeRepository();
     }
 
     public function login(){
@@ -136,6 +140,22 @@ class AdminController extends MainController
             'page_javascript' => ['popup.js'],
             'page_css' => ['color.css' ,'admin.css', 'table.css', 'popup.css'],
             'list' => $palette,
+            'page_menu' => 'color'
+        ];
+        $this->genererPage($data_page);
+    }
+
+    public function commande(){
+        $commande = $this->commandeRepository->getAll();
+
+        $data_page= [
+            'page_description' => 'Gestion des commande',
+            'page_title' => 'page de commande',
+            'views' => 'Views/commande/commande.view.php',
+            'template' => 'Views/partials/template.php',
+            'page_javascript' => ['popup.js'],
+            'page_css' => ['admin.css', 'table.css', 'popup.css'],
+            'list' => $commande,
             'page_menu' => 'color'
         ];
         $this->genererPage($data_page);

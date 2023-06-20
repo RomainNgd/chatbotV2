@@ -9,6 +9,7 @@
     <?php
     if (!empty($_SESSION['chatuser']['login'])): ?>
     <link rel="stylesheet" href="<?= URL ?>assets/css/sidenav.css">
+    <script src="https://kit.fontawesome.com/16ccf2aa54.js" crossorigin="anonymous"></script>
     <?php endif;
     if(!empty($page_css)) : ?>
         <?php foreach($page_css as $fichier_css) : ?>

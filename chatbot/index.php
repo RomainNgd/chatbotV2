@@ -369,6 +369,25 @@ try {
                                 }
                             }
                             break;
+                        case 'commande':
+                            if (empty($url[2])){
+                                $adminController->commande();
+                            }
+                            else{
+                                switch ($url[2]){
+                                    case 'usePalette':
+                                        if (!isset($_POST['id']) && is_int($_POST['id'])){
+                                            Toolbox::ajouterMessageAlerte(
+                                                "Veuillez choisir une palette valide",
+                                                Toolbox::COULEUR_ROUGE
+                                            );
+                                        } else{
+                                            $colorService->usePalette();
+                                        }
+                                        header("Location:" . URL . "admin/color");
+                                        break;
+                                }
+                            }
                         default:
                             $mainController->pageErreur('Cette page n\'existe pas');
                             break;
