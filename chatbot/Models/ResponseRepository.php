@@ -55,6 +55,14 @@ class ResponseRepository extends MainRepository {
         ]) or die(print_r($this->getDataBase()->errorInfo()));
         return $get->fetch();
     }
+    public function getAction(int $id){
+        $query = 'SELECT action FROM c_response WHERE id = :id';
+        $get = $this->getDataBase()->prepare($query);
+        $get->execute([
+            'id' => $id,
+        ]) or die(print_r($this->getDataBase()->errorInfo()));
+        return $get->fetch();
+    }
 
     public function getAllResponse(){
         $query = 'SELECT id, response FROM c_response';

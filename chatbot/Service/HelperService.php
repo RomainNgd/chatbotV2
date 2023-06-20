@@ -26,6 +26,10 @@ class helperService
      * @return string
      */
     protected function simpleResponse($entity, $result){
-        return 'J\'ai trouver un ' . $entity . ' correspondant à votre demande <br/>' . $result[$entity] . ' : <a href="'. $result["url"] .'">' . $result['url'] . '</a>' ;
+        $response =  'J\'ai trouver un ' . $entity . ' correspondant à votre demande <br/>' . $result[$entity] . ' : <a href="'. $result["url"] .'">' . $result['url'] . '</a>' ;
+        if ($entity === 'produit' && isset($_SESSION['produit'])){
+            $response = $response . '<br/> Si vous voulez l\'ajouter au panier taper \'ajouter au panier\'';
+        }
+        return  $response;
     }
 }

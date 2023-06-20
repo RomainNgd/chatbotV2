@@ -18,7 +18,7 @@
             <h2 class="name">BILLY</h2>
         </div>
         <div class="brand">
-            <img id="reset" class="logo" src="<?= URL; ?>assets/img/reload.png" alt="" onclick="reset()">
+            <img id="reset" class="logo" src="<?= URL; ?>assets/img/reload.png" alt="" onclick="reset('Chat réinitalisé avec succès, que puis-je faire pour vous ?')">
             <img id="hide" class="logo" src="<?= URL; ?>assets/img/croix.png" alt="" onclick="closeChat()">
         </div>
     </div>

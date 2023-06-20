@@ -19,7 +19,7 @@
                 <h2 class="name">BILLY</h2>
             </div>
             <div class="brand">
-                <img id="reset" class="logo" src="/chatbot/assets/img/reload.png" alt="" onclick="reset()">
+                <img id="reset" class="logo" src="/chatbot/assets/img/reload.png" alt="" onclick="reset('Chat réinitalisé avec succès, que puis-je faire pour vous ?')">
                 <img id="hide" class="logo" src="/chatbot/assets/img/croix.png" alt="" onclick="closeChat()">
             </div>
         </div>

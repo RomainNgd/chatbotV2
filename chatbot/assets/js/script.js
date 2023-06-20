@@ -1,9 +1,9 @@
 let i = 0;
 
 document.addEventListener('DOMContentLoaded', starter)
-document.addEventListener('', reset)
 
 function starter() {
+    reset("Bonjour, je suis Billy votre assistant automatique. Que puis-je faire pour vous ?")
     let input = document.getElementById( 'message' );
     const scroller = document.getElementById( 'message-box' );
 
@@ -82,7 +82,7 @@ function closeChat()
     button.classList.add('button-animation', 'open-button')
 }
 
-function reset(){
+function reset(message){
     document.getElementById('message-box').innerHTML = ''
     i = 0
     fetch('chatbot/chatapi.php', {
@@ -91,7 +91,8 @@ function reset(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            method: 'resetChat'
+            method: 'resetChat',
+            message : message
         })
     })
         .then(response => response.json())
@@ -163,7 +164,7 @@ function iaResponse( message )
         box.appendChild( element );
         document.getElementById('message').removeAttribute('readonly')
         box.scrollTop += 9999
-    }, 2500)
+    }, 1000)
 }
 
 // function selectColor()

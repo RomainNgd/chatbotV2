@@ -2,13 +2,16 @@
 
 namespace Chatbot\Service;
 
+use Chatbot\Repository\ProduitRepository;
 use Chatbot\Repository\UserRepository;
 use Validator\PasswordValidator;
 
 require_once __DIR__ . '/../Service/ProduitService.php';
 require_once __DIR__ . '/../Service/CategorieService.php';
+require_once __DIR__ . '/../Service/CommandeService.php';
 require_once __DIR__ . '/../Service/KeywordService.php';
 require_once __DIR__ . '/../Models/UserRepository.php';
+require_once __DIR__ . '/../Models/ProduitRepository.php';
 require_once __DIR__ . '/../Validator/PasswordValidator.php';
 
 class ChatService
@@ -17,13 +20,17 @@ class ChatService
     private ProduitService $produitService;
     private CategorieService $categorieService;
     private KeywordService $keywordService;
+    private CommandeService $commandeService;
     private UserRepository $userRepository;
+    private ProduitRepository $produitRepository;
 
     public function __construct(){
         $this->produitService  = new ProduitService();
         $this->categorieService  = new CategorieService();
         $this->keywordService  = new KeywordService();
+        $this->commandeService  = new CommandeService();
         $this->userRepository  = new UserRepository();
+        $this->produitRepository = new ProduitRepository();
 
     }
 
@@ -38,6 +45,9 @@ class ChatService
             $response = $this->isKeyword($sentences);
         } else{
             $response = $this->noKeyword($sentences);
+            if (!empty($_SESSION['action']) && $_SESSION['action'] === 1){
+                $response = $this->isKeyword($sentences);
+            }
         }
         return json_encode($response);
     }
@@ -49,8 +59,6 @@ class ChatService
      */
     public function isKeyword($sentences): string{
         switch ($_SESSION['lastkeyword']){
-            case 'panier':
-
             case 'deconnection': {
                 switch ($sentences){
                     case 'oui':
@@ -193,6 +201,89 @@ class ChatService
                 }
                 break;
             }
+            case 'add' :{
+                    if (isset($_SESSION['product'])){
+                        $produit = $this->produitRepository->getProductById($_SESSION['product']);
+                        if (empty($produit) ) {
+                            $response = 'le produit n\'est pas reconnue veuillez ressayer ';
+                        }elseif (isset($_SESSION['panier']) && array_search($produit['id'],$_SESSION['panier']) ){
+                            $response = 'le produit a dèjà été ajouter au panier';
+                            unset($_SESSION['lastkeyword']);
+                        } else {
+                            $_SESSION['panier'] []= $produit['id'];
+                            $response = 'Le produit '. $produit['produit']. ' a été ajouter au panier';
+                            unset($_SESSION['lastkeyword']);
+                        }
+                    } else {
+                        $response = 'Quelle produit rechercher-vous ?';
+                        $_SESSION['lastkeyword'] = 'product';
+                    }
+                break;
+            }
+            case 'see' : {
+                if (!empty($_SESSION['panier'])){
+                    $response = 'Voici le contenue de votre panier(pour suppirmer un produit du panier taper \'supprimer du panier\')';
+                    foreach ($_SESSION['panier'] as $id){
+                        $produit = $this->produitRepository->getProductById($id);
+                        $response = $response . '<br>' . $produit['produit'] . 'référence produit : ' . $produit['ref'] ;
+                    }
+                } else {
+                    $response = 'Votre panier est vide';
+                }
+                unset($_SESSION['lastkeyword']);
+                break;
+            }
+            case 'delete' : {
+                if (empty($_SESSION['panier'])){
+                    $response = 'votre panier est vide';
+                } elseif(empty($this->produitRepository->getProductByRef($sentences)) || array_search($this->produitRepository->getProductByRef($sentences)['ref'], $_SESSION['panier'])){
+                    $response = 'le produit demander n\'existe pas veuillez véfiez en tappant \'voir panier\'';
+                } else{
+                    unset($_SESSION['panier'][array_search($this->produitRepository->getProductByRef($sentences)['ref'], $_SESSION['panier'])]);
+                    if (empty($_SESSION['panier'])){
+                        $response = 'Votre panier est maintenant vide';
+                    } else {
+                        $response = 'l\'élément a bien été supprimer du panier taper \'voir le panier\' afin de visualisé le panier';
+                    }
+                }
+                unset($_SESSION['lastkeyword']);
+                break;
+            }
+            case 'commande' : {
+                switch ($sentences){
+                    case 'oui': {
+                        if (!empty($_SESSION['panier'])){
+                            $response = 'Voici le contenue de votre panier(pour suppirmer un produit du panier taper \'supprimer du panier\')';
+                            foreach ($_SESSION['panier'] as $id){
+                                $produit = $this->produitRepository->getProductById($id);
+                                $response = $response . '<br>' . $produit['produit'] . 'référence produit : ' . $produit['ref'] ;
+                            }
+                            $_SESSION['lastkeyword'] = 'commande_confirme';
+                            $response = $response . '<br/>renseigner votre addresse mail si après et envoyé un chéques aux coordonnée suivantes vous recevrez votre commande dans les plus bref délaie vous serez tenu au courant par mail';
+                        } else {
+                            $response = 'Votre panier est vide Vous ne pouvez prien commander pour ajouter un produit au panier tapez ajoutez au panier';
+                        }
+                        break;
+                    }
+                    case 'non':
+                        $response = 'Procéssus de commande abandonées';
+                        unset($_SESSION['lastkeyword']);
+                        break;
+                    default :
+                        $response = 'je n\'ai pas comrpis votre réponse taper oui ou non';
+                        break;
+                }
+                break;
+            }
+            case 'commande_confirm' : {
+                $_SESSION['email'] = $sentences;
+                if (!$this->commandeService->addCommande()){
+                    $response = 'Un problème est survenue dans l\'enregistrement de votre commande veuillez réessayer';
+                } else{
+                    $response = 'Votre commande a été enregistrer si nous ne recevons pas le chèque dans un delaie de 30 jours elle sera abandonné, Merci de votre commande a bientôt';
+                }
+                break;
+            }
             default : {
                 $response = $this->noKeyword($sentences);
                 break;
@@ -227,10 +318,13 @@ class ChatService
      * @return string
      */
     public function resetChat($message) : string{
-        unset($_SESSION['lastkeyword']);
+        if (isset($_SESSION['lastkeyword'])){
+            unset($_SESSION['lastkeyword']);
+        }
+        if (isset($_SESSION['product'])){
+            unset($_SESSION['product']);
+        }
         return json_encode($message);
-
-
     }
 
 

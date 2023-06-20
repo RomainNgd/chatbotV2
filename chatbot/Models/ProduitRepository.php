@@ -29,16 +29,27 @@ class ProduitRepository extends MainRepository
     }
 
     public function getProduit(string $word){
-        if (strlen($word) >= 4){
-            $query = 'SELECT produit, url FROM c_produit WHERE produit LIKE "%'.$word[0].$word[1].$word[2].$word[3].'%"';
+        if (strlen($word) > 10){
+            $query = 'SELECT id, produit, url FROM c_produit WHERE produit LIKE "'.$word[0].$word[1].$word[2].'%'.$word[-1].$word[-2].$word[-3].'"';
+        }
+        elseif (strlen($word) >= 4){
+            $query = 'SELECT id, produit, url FROM c_produit WHERE produit LIKE "%'.$word[0].$word[1].$word[2].$word[3].'%"';
         }
         elseif(strlen($word) > 1){
-            $query = 'SELECT produit, url FROM c_produit WHERE produit LIKE "'.$word.'"';
+            $query = 'SELECT id, produit, url FROM c_produit WHERE produit LIKE "'.$word.'"';
         }else{
             return false;
         }
         $get = $this->getDataBase()->prepare($query);
         $get->execute() or die(print_r($this->getDataBase()->errorInfo()));
+        return $get->fetchAll();
+    }
+
+    public function getExactProduit(string $word){
+        $query = 'SELECT produit, url FROM c_produit WHERE produit = :word';
+        $get = $this->getDataBase()->prepare($query);
+        $get->bindValue(':word', $word);
+        $get->execute();
         return $get->fetchAll();
     }
 
@@ -83,6 +94,13 @@ class ProduitRepository extends MainRepository
         $query = 'SELECT * FROM c_produit WHERE id = :id';
         $get = $this->getDataBase()->prepare($query);
         $get->bindValue(':id', $id);
+        $get->execute();
+        return $get->fetch();
+    }
+    public function getProductByRef($ref){
+        $query = 'SELECT * FROM c_produit WHERE ref = :ref';
+        $get = $this->getDataBase()->prepare($query);
+        $get->bindValue(':ref', $ref);
         $get->execute();
         return $get->fetch();
     }

@@ -25,22 +25,31 @@ class ProduitService extends helperService
      */
     public function searchProduit($sentence)
     {
-        $responses = [];
-        $words = explode(' ', $sentence);
-        foreach ($words as $item){
-            $item = strtolower(htmlentities($item));
-            $results = $this->repository->getProduit($item);
-            if ($results !== false){
-                foreach ($results as $result){
-                    $responses[] = $result;
+        $responses = $this->repository->getExactProduit($sentence);
+        if (empty($responses)){
+            $responses = $this->repository->getProduit($sentence);
+        }
+        if (empty($responses)){
+            $responses = [];
+            $words = explode(' ', $sentence);
+            foreach ($words as $item){
+                $item = strtolower(htmlentities($item));
+                $results = $this->repository->getProduit($item);
+                if ($results !== false){
+                    foreach ($results as $result){
+                        $responses[] = $result;
+                    }
                 }
             }
         }
+
         if (count($responses) > 10){
             return 'Nous avons trouver plus de 10 correspondance produit veuillez précisez votre recherche';
         }elseif (count($responses) > 1){
             return $this->multipleResponse('produit', $responses);
         } elseif(count($responses) > 0) {
+            $_SESSION['product'] = $responses[0]['id'];
+            unset($_SESSION['lastkeyword']);
             return $this->simpleResponse('produit', $responses[0]);
         } else {
             return '';
