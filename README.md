@@ -1,12 +1,12 @@
 # chatbotV2
 
-** Ce proejt est un chatbot qui peut êtra ajouté sur n'importe qu'elle site web **
+**Ce proejt est un chatbot qui peut êtra ajouté sur n'importe qu'elle site web**
 
- ** Pour l'intégrer il vous suvira de suivre les étape suivante : **
+ **Pour l'intégrer il vous suvira de suivre les étape suivante :**
 
-##Installation 
+## Installation 
 
-###Base de données
+### Base de données
 
 1 - Télécharger le code du projet
 
@@ -14,13 +14,13 @@
 
 3 - importer le dans votre base de donnée
 
-###Site web 
+### Site web 
 
 1 - récupéré le dossier chatbot en entier
 
 2 - copié ce dossier dans a la racine de votre site web
 
-##Config
+## Config
 
 1 - Modifié les varaibles du fichier "chatbot/database/dbconfig.php" afin qu'il fonctionne avec votre environnement
 
