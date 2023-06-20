@@ -1,7 +1,7 @@
 <div class="admin-container">
     <div class="container-text">
-        <h3>Enregistrer Un Nouveau produit </h3>
-        <p>Enregistrer un nouveau produit que le chatbot pourra retoruver grâce a son nom et le proposer a vos utilisteurs </p>
+        <h3>Enregistrer un nouveau produit </h3>
+        <p>Enregistrer un nouveau produit que le chatbot pourra retrouver grâce a son nom et le proposer a vos utilisateurs </p>
         <form action="<?= URL ?>admin/produit/new" method="post">
             <label for="name">Nom du porduit :
                 <input type="text" name="name" id="name">

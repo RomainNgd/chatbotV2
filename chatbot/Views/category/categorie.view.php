@@ -1,12 +1,12 @@
 <div class="admin-container">
     <div class="container-text">
-        <h3>Enregistrer Une nouvelle Categorie </h3>
-        <p>Enregistrer une nouvelle categorie que le chatbot pourra retrouver grâce à son nom et la proposer à vos utilisteurs </p>
+        <h3>Enregistrer une nouvelle catégorie </h3>
+        <p>Enregistrer une nouvelle catégorie que le chatbot pourra retrouver grâce à son nom et la proposer à vos utilisateurs </p>
         <form action="<?= URL ?>admin/categorie/new" method="post">
-            <label for="categorie">Nom de la categorie :
+            <label for="categorie">Nom de la catégorie :
                 <input type="text" id="categorie" name="categorie">
             </label>
-            <label for="slug">Slug de la categorie :
+            <label for="slug">Slug de la catégorie :
                 <input type="text" id="slug" name="slug">
             </label>
             <button type="submit">Ajouter</button>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="table-container">
-    <h2 style="text-align: center">Liste des Categorie existante</h2>
+    <h2 style="text-align: center">Liste des Catégories existantes</h2>
     <table class="fl-table">
         <thead>
         <tr>
@@ -43,11 +43,11 @@
 
 <div id="popup1" class="overlay">
     <div class="popup">
-        <h2>Suppression de Category</h2>
+        <h2>Suppression de catégorie</h2>
         <a class="close" href="#">&times;</a>
         <div class="content">
-            Etes-vous sur de vouloir supprimer la category <p id="item"></p> <br>
-            <p>En la supprimant vous supprimer tout les produits qui sont liés </p>
+            Êtes-vous sur de vouloir supprimer la catégorie <p id="item"></p> ?<br>
+            <p>En la supprimant, vous supprimez tous les produits qui lui sont liés.</p>
             <button style="background-color: darkred; background-image: none; margin-top: 2em" ><a id="delete" style="color: white" href="<?= URL ?>admin/categorie/delete&id=">supprimer</a></button>
         </div>
     </div>

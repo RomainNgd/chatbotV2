@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Configurer vos identifiants</h1>
+    <h1>Configurez vos identifiants</h1>
     <?php
     if(!empty($_SESSION['alert'])) {
         foreach($_SESSION['alert'] as $alert){

@@ -4,7 +4,6 @@
         <div class="container-text">
             <h3>Ajouter des mots-clés</h3>
             <p>Billy vous permet d'ajouter de nouveau mots-clés à rattacher une réponse.</p>
-            <!-- <p>Dans l'onglet "Mots-clés", tapez votre réponse, insérer vos mots-clés et HOP Billy est prêt à l'utilisation !</p> -->
         </div>
     </div>
 
@@ -12,7 +11,6 @@
         <div class="container-text">
             <h3>Ajouter de nouveaux produits</h3>
             <p>Vous pouvez ajouter de nouveaux produits que vos clients pourront retrouver via Billy !</p>
-            <!-- <p>Dans l'onglet "Produit", tapez le nom de votre produit, définissez le prix, sa catégorie, ainsi que sa référence ou encore editer et supprimer !</p> -->
         </div>
     </div>
 

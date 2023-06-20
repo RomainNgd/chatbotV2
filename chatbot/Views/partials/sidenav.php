@@ -26,7 +26,7 @@ $page = $page_menu;
                         <i class="bx bx-folder"></i>
                         <i class="bx bxs-folder"></i>
                     </div>
-                    <span class="link hide">Mot clée</span>
+                    <span class="link hide">Mots-clés</span>
                 </a>
             </li>
             <li class="tooltip-element <?php if($page === 'produit'): ?>active-tab <?php endif ?>" data-tooltip="2">
@@ -44,7 +44,7 @@ $page = $page_menu;
                         <i class="bx bx-bar-chart-square"></i>
                         <i class="bx bxs-bar-chart-square"></i>
                     </div>
-                    <span class="link hide">Categorie</span>
+                    <span class="link hide">Catégorie</span>
                 </a>
             </li>
             <li class="tooltip-element <?php if($page === 'color'): ?> active-tab <?php endif ?>" data-tooltip="4">

@@ -9,7 +9,7 @@
                     <a class="nav-link" aria-current="page" href="<?= URL; ?>accueil">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="<?= URL; ?>deconnexion">Deconnexion</a>
+                    <a class="nav-link" aria-current="page" href="<?= URL; ?>deconnexion">Déconnexion</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="<?= URL; ?>creerCompte">Créer un compte</a>
